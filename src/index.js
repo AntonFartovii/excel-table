@@ -3,4 +3,4 @@
 import './scss/index.scss'
 import './module'
 
-    console.log('Hello world!!!!!!!')
+console.log('Hello world!!!!!!!')

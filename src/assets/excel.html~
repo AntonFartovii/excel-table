@@ -7,8 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pure JS Excel</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<script defer src="main.bundle.js"></script><link href="main.bundle.css" rel="stylesheet"></head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 <body>
-<div id="app" class="container"></div>
+    <div id="app" class="container">
+
+    <div class="db">
+        <div class="db__header"></div>
+        <div class="db__new"></div>
+        <div class="db__table"></div>
+    </div>
+    </div>
 </body>
 </html>
