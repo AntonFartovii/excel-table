@@ -15,6 +15,6 @@ module.exports = {
     },
     extends: ['eslint:recommended', 'google'],
     rules: {
-        // 'semi': 'off'
+        'semi': 'off' // вырубаем точку с запятой
     }
 }

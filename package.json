@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
+    "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode=development",
     "serve": "webpack serve --mode=development",
     "build": "webpack --mode=production"
@@ -44,6 +45,7 @@
   "homepage": "https://github.com/AntonFartovii/excel-course#readme",
   "description": "",
   "dependencies": {
-    "@babel/polyfill": "^7.12.1"
+    "@babel/polyfill": "^7.12.1",
+    "normalize.css": "^8.0.1"
   }
 }
