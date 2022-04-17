@@ -1,6 +1,3 @@
-
-
-
 module.exports = {
     parser: '@babel/eslint-parser',
     parserOptions: {
@@ -15,6 +12,22 @@ module.exports = {
     },
     extends: ['eslint:recommended', 'google'],
     rules: {
-        // 'semi': 'off'
+        'no-unused-vars':'off',
+        'no-debugger':'off',
+        'semi': 'off',
+        'require-jsdoc': 'off',
+        'linebreak-style':'off',
+        'eol-last':'off',
+        'space-before-blocks':'off',
+        'quotes':'off',
+        'indent':'off',
+        'space-before-function-paren':'off',
+        'comma-dangle':'off',
+        'comma-spacing':'off',
+        'arrow-parens':'off',
+        'no-multi-spaces':'off',
+        'func-call-spacing':'off',
+        'operator-linebreak':'off'
+
     }
 }

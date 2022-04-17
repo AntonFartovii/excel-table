@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
@@ -44,6 +45,7 @@
   "homepage": "https://github.com/AntonFartovii/excel-course#readme",
   "description": "",
   "dependencies": {
-    "@babel/polyfill": "^7.12.1"
+    "@babel/polyfill": "^7.12.1",
+    "normalize.css": "^8.0.1"
   }
 }

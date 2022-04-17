@@ -4,15 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
-
-// process.env.NODE_ENV
-
-
-
-
-
 module.exports = (env, args) => { // module.exports = {
-
     const isProd = args.mode === 'production'
     const isDev = !isProd
     const filename = ext => isProd ? `[name].[contenthash].${ext}`:`[name].bundle.${ext}`
@@ -86,7 +78,8 @@ module.exports = (env, args) => { // module.exports = {
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env']
+                            presets: ['@babel/preset-env'],
+                            plugins: ['@babel/plugin-proposal-class-properties']
                         }
                         // options: babelOptions()
                     }
