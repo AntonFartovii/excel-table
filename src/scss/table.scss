@@ -9,7 +9,6 @@
   overflow-x: auto;
   padding-bottom: 2px;
 
-
   .row {
     display: flex;
     flex-direction: row;
@@ -17,6 +16,7 @@
     height: $row-height;
   }
   .row-info {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,12 +26,12 @@
     background: #f8f9fa;
     border-top: none;
   }
-
   .row-data {
     display: flex;
 
   }
   .column {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +43,6 @@
     border-top: none;
     border-left: none;
   }
-
   .cell {
     min-width: 40px;
     padding: 5px;
@@ -57,8 +56,53 @@
 
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $primary-color;
       z-index: 2;
     }
+  }
+  .col-resize, .row-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: $primary-color;
+    opacity: 0;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .col-resize {
+    top: 0;
+    width: 4px;
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+  .row-resize {
+    left: 0;
+    height: 4px;
+    &:hover {
+      cursor: row-resize;
+    }
+  }
+  .google-line-ver, .google-line-hor {
+    position: absolute;
+    opacity: 0;
+    background: $primary-color;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .google-line-ver {
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .google-line-hor {
+    height: 1px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }
