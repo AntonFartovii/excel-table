@@ -12,6 +12,7 @@ module.exports = {
     },
     extends: ['eslint:recommended', 'google'],
     rules: {
+        'no-trailing-spaces': 'off',
         'no-unused-vars':'off',
         'no-debugger':'off',
         'semi': 'off',
@@ -25,9 +26,9 @@ module.exports = {
         'comma-dangle':'off',
         'comma-spacing':'off',
         'arrow-parens':'off',
-        'no-multi-spaces':'off',
-        'func-call-spacing':'off',
-        'operator-linebreak':'off'
+        // 'no-multi-spaces':'off',
+        // 'func-call-spacing':'off',
+        // 'operator-linebreak':'off'
 
     }
 }
