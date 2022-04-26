@@ -1,5 +1,5 @@
 import {ExcelComponent} from '@core/ExcelComponent'
-import {Emitter} from "@/core/Emitter";
+import {$} from '@/core/dom.js'
 
 export class Formula extends ExcelComponent {
   static className = 'excel__formula'
@@ -7,7 +7,8 @@ export class Formula extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: 'Formula',
-      listeners: ['input', 'click', 'keydown'],
+      listeners: ['input', 'keydown'],
+      subscribe: ['currentText'],
       ...options
     })
   }
@@ -18,32 +19,42 @@ export class Formula extends ExcelComponent {
       <div id="formula" class="input" contenteditable spellcheck="false"></div>`
   }
 
-  onInput(event) {
-    console.log (event)
-    const text = event.target.textContent.trim();
-    this.$emit('Formula:input', text)
-  }
-
-  onClick() {
-    console.log('Formula click!')
-  }
+  // onInput(event) {
+  //   const text = event.target.textContent.trim();
+  //   this.$emit('Formula:input', text)
+  // }
 
   init() {
-    super.init ();
+    super.init();
+
     this.$formula = this.$root.find('#formula')
-    this.$on('Table:select', $cell => {
-      this.$formula.text($cell.text())
+
+    this.$on('table:select', $cell => {
+      this.$formula.text($cell.data.value)
     })
-    this.$on('Table:input', $cell => {
-      this.$formula.text($cell.text())
-    })
+    // this.$on('Table:input', $cell => {
+    //   this.$formula.text($cell.text())
+    // })
+
+    // this.$subscribe(state => {
+    //   console.log (state.currentText)
+    //   this.$formula.text(state.currentText)
+    // })
+  }
+
+  storeChanged({currentText}) {
+    this.$formula.text ( currentText )
+  }
+
+  onInput(event) {
+    this.$emit('formula:input', $(event.target).text())
   }
 
   onKeydown(event) {
     const keys = ['Enter', 'Tab']
     if (keys.includes(event.key)){
       event.preventDefault()
-      this.$emit('Formula:done')
+      this.$emit('formula:done')
     }
   }
 }

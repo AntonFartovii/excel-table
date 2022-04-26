@@ -26,9 +26,8 @@ module.exports = {
         'comma-dangle':'off',
         'comma-spacing':'off',
         'arrow-parens':'off',
-        // 'no-multi-spaces':'off',
-        // 'func-call-spacing':'off',
-        // 'operator-linebreak':'off'
-
+        'no-multi-spaces':'off',
+        'func-call-spacing':'off',
+        'operator-linebreak':'off'
     }
 }

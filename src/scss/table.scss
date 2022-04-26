@@ -85,6 +85,7 @@
     }
   }
   .google-line-ver, .google-line-hor {
+    z-index: 100;
     position: absolute;
     opacity: 0;
     background: $primary-color;
