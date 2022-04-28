@@ -1,11 +1,12 @@
 const path = require('path') // модуль
+const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 module.exports = (env, args) => { // module.exports = {
-    const isProd = args.mode === 'production'
+    const isProd = process.env.NODE_ENV === 'production'
     const isDev = !isProd
     const filename = ext => isProd ? `[name].[contenthash].${ext}`:`[name].bundle.${ext}`
     const plugins = () =>{
@@ -23,6 +24,9 @@ module.exports = (env, args) => { // module.exports = {
                     filename: filename('css')
                 }),
                 new CleanWebpackPlugin(),
+                new webpack.DefinePlugin({
+                    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+                })
             ]
 
         if (isDev) {
@@ -54,11 +58,9 @@ module.exports = (env, args) => { // module.exports = {
 
         devServer: {
             port: '3000',
-
             // watchContentBase: true
             // open: true,
             // hot: true,
-
         },
         devtool: isDev ? 'source-map': false,
         module: {

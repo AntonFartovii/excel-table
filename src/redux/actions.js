@@ -1,4 +1,4 @@
-import {APPLY_STYLE, CHANGE_NAMEFILE, CHANGE_TITLE} from "./types";
+import {APPLY_STYLE, CHANGE_TITLE, UPDATE_DATE} from "./types";
 import {CHANGE_STYLES, CHANGE_TEXT, TABLE_RESIZE} from "./types";
 
 // Action creator
@@ -34,5 +34,10 @@ export function changeTitle(data) {
     return {
         type: CHANGE_TITLE,
         data
+    }
+}
+export function updateDate() {
+    return {
+        type: UPDATE_DATE,
     }
 }
