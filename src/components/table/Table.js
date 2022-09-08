@@ -44,7 +44,6 @@ export class Table extends ExcelComponent {
   selectCell ($cell) {
     this.selection.select($cell)
     this.$emit('Table:select', $cell)
-    this.$dispatch({type: 'TEST'})
   }
 
   onMousedown(event) {
