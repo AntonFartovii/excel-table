@@ -19,7 +19,6 @@ export class Formula extends ExcelComponent {
   }
 
   onInput(event) {
-    console.log (event)
     const text = event.target.textContent.trim();
     this.$emit('Formula:input', text)
   }
