@@ -35,11 +35,16 @@ export class Table extends ExcelComponent {
     this.$on('Formula:done', () => {
       this.selection.current.focus()
     })
+
+    this.$subscribe( state => {
+      console.log( 'TableState', state )
+    })
   }
 
   selectCell ($cell) {
     this.selection.select($cell)
     this.$emit('Table:select', $cell)
+    this.$dispatch({type: 'TEST'})
   }
 
   onMousedown(event) {
