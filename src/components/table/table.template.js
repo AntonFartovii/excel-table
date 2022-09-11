@@ -3,6 +3,7 @@ const CODES = {
   Z: 90
 }
 const DEFAULT_WIDTH = 120
+const DEFAULT_HEIGHT = 24
 
 function toCell( state, row ) {
   return function(_, col) {
@@ -13,7 +14,8 @@ function toCell( state, row ) {
         data-col="${col}"
         data-type="cell"
         data-id="${row}:${col}"
-        style="width: ${getWidth( state.colState, col )}"
+        style="width: ${getWidth( state.colState, col )}; 
+        height: ${getHeight( state.rowState, row )}"
       ></div>
     `
   }
@@ -29,10 +31,10 @@ function toColumn({col, index, width} ) {
   `
 }
 
-function createRow(index, content) {
+function createRow( index, content ) {
   const resize = index ? '<div class="row-resize" data-resize="row"></div>' : ''
   return `
-    <div class="row" data-type="resizable">
+    <div class="row" data-type="resizable" data-row="${index}">
       <div class="row-info">
         ${index ? index : ''}
         ${resize}
@@ -46,8 +48,12 @@ function toChar(_, index) {
   return String.fromCharCode(CODES.A + index)
 }
 
-function getWidth( state, index ) {
-  return ( state[index] || DEFAULT_WIDTH ) + 'px'
+function getWidth( state = {}, index ) {
+    return ( state[index] || DEFAULT_WIDTH ) + 'px'
+}
+
+function getHeight( state = {}, index ) {
+    return ( state[index] || DEFAULT_HEIGHT + 'px')
 }
 
 function withWidthFromState( state ) {

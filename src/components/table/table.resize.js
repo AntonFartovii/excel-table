@@ -36,11 +36,13 @@ export function resizeHandler($root, event) {
                     .forEach(el => el.style.width = value + 'px')
             } else {
                 $parent.css({height: value + 'px'})
+                console.log( '$parent.data.row: ', $parent.data.row)
+                console.log( 'value: ', value)
             }
 
             resolve({
                 value,
-                id: type === 'col' ? $parent.data.col : null
+                id: type === 'col' ? $parent.data.col : $parent.data.row
             })
 
             $resizer.css({
