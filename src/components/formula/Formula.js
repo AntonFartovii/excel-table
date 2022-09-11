@@ -1,5 +1,6 @@
 import {ExcelComponent} from '@core/ExcelComponent'
 import {Emitter} from "@/core/Emitter";
+import {$} from "../../core/dom";
 
 export class Formula extends ExcelComponent {
   static className = 'excel__formula'
@@ -19,9 +20,9 @@ export class Formula extends ExcelComponent {
   }
 
   onInput(event) {
-    const text = event.target.textContent.trim();
-    this.$emit('Formula:input', text)
+    this.$emit('formula:input', $(event.target).text() )
   }
+
 
   onClick() {
     console.log('Formula click!')
@@ -32,24 +33,25 @@ export class Formula extends ExcelComponent {
 
     this.$formula = this.$root.find('#formula')
 
-    this.$on('Table:select', $cell => {
+    this.$on('table:select', $cell => {
       this.$formula.text($cell.text())
     })
 
-    this.$on('Table:input', $cell => {
-      this.$formula.text($cell.text())
-    })
-
-    // this.$subscribe( state => {
-    //   console.log( 'FormulaState', state )
+    // this.$on('Table:input', $cell => {
+    //   this.$formula.text($cell.text())
     // })
+
+    this.$subscribe( state => {
+      this.$formula.text( state.currentText )
+      console.log( 'Formula update: ', state.currentText )
+    })
   }
 
   onKeydown(event) {
     const keys = ['Enter', 'Tab']
     if (keys.includes(event.key)){
       event.preventDefault()
-      this.$emit('Formula:done')
+      this.$emit('formula:done')
     }
   }
 }
