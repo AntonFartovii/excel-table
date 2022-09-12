@@ -1,6 +1,9 @@
 import {ExcelComponent} from '@core/ExcelComponent'
+import {createToolbar} from "./toolbar.template";
+import {$} from "../../core/dom";
+import {ExcelStateComponent} from "../../core/ExcelStateComponent";
 
-export class Toolbar extends ExcelComponent {
+export class Toolbar extends ExcelStateComponent {
   static className = 'excel__toolbar'
 
   constructor($root, options) {
@@ -11,35 +14,34 @@ export class Toolbar extends ExcelComponent {
     })
   }
 
+  prepare() {
+    const initialState = {
+      textAlign: 'left',
+      fontWeight: 'normal',
+      textDecoration: 'none',
+      fontStyle: 'normal'
+    }
+    this.initState( initialState )
+  }
+
+  get template() {
+    return createToolbar( this.state )
+  }
+
   toHTML() {
-    return `
-      <div class="button">
-        <i class="material-icons">format_align_left</i>
-      </div>
-
-      <div class="button">
-        <i class="material-icons">format_align_center</i>
-      </div>
-
-      <div class="button">
-        <i class="material-icons">format_align_right</i>
-      </div>
-
-      <div class="button">
-        <i class="material-icons">format_bold</i>
-      </div>
-
-      <div class="button">
-        <i class="material-icons">format_italic</i>
-      </div>
-
-      <div class="button">
-        <i class="material-icons">format_underlined</i>
-      </div>
-    `
+    return this.template
   }
 
   onClick(event) {
-    console.log(event.target)
+    const $target = $(event.target)
+
+    if ( $target.data.type === 'button' ) {
+      const value = JSON.parse( $target.data.value )
+      const key = Object.keys( value )[0]
+      console.log( key )
+      console.log( 'value: ', value )
+      console.log( 'value[key]: ', value[key] )
+      this.setState( value )
+    }
   }
 }
