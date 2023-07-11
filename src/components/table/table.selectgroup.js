@@ -1,10 +1,9 @@
-import  {$} from '@/core/dom.js'
+import  {$} from '@/core/dom.js'; 
 export function selectGroup (event, $root) {
+  document.onmousemove = e => {
 
-    document.onmousemove = e => {
+  };
+  document.onmouseup = (ev) => {
 
-    }
-    document.onmouseup = (ev) => {
-
-    }
+  };
 }

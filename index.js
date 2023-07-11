@@ -1,7 +1,1 @@
-
-
-import './src/scss/index.scss'
-// import './src/module'
-
-
-console.log('index.js')
+import './src/scss/index.scss';

@@ -6,7 +6,8 @@
     "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode=development",
     "serve": "webpack serve --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "lint:fix": "eslint --fix"
   },
   "keywords": [
     "excel"

@@ -1,9 +1,9 @@
-import {ExcelComponent} from '@core/ExcelComponent'
-import * as actions from '@/redux/actions'
-import {$} from '@core/dom'
-import {defaultTitle} from "../../constants";
-import {debounce} from "../../core/utils";
-import {ActiveRoute} from "../../core/routes/ActiveRoute";
+import {ExcelComponent} from '@core/ExcelComponent';
+import * as actions from '@/redux/actions';
+import {$} from '@core/dom';
+import {defaultTitle} from '../../constants';
+import {debounce} from '../../core/utils';
+import {ActiveRoute} from '../../core/routes/ActiveRoute'; 
 
 export class Header extends ExcelComponent {
   static className = 'excel__header'
@@ -11,7 +11,7 @@ export class Header extends ExcelComponent {
     super ($root, {
       name: 'Header',
       listeners: ['input', 'click'],
-      ...options
+      ...options,
     });
   }
   init() {
@@ -20,29 +20,29 @@ export class Header extends ExcelComponent {
 
   prepare() {
     super.prepare ();
-    this.onInput = debounce(this.onInput, 300)
+    this.onInput = debounce(this.onInput, 300);
   }
 
   onInput(event) {
-    const $target = $(event.target)
-    this.$dispatch(actions.changeTitle($target.text()))
+    const $target = $(event.target);
+    this.$dispatch(actions.changeTitle($target.text()));
   }
 
   onClick(event) {
-    const $target = $(event.target)
+    const $target = $(event.target);
     if ($target.data.button === 'remove') {
-      const decision = confirm('Вы уверены?')
+      const decision = confirm('Вы уверены?');
       if (decision) {
-        localStorage.removeItem('excel:' + ActiveRoute.param)
+        localStorage.removeItem('excel:' + ActiveRoute.param);
       }
     } else if ($target.data.button === 'exit') {
-      console.log (event)
-      ActiveRoute.navigate('')
+      console.log (event);
+      ActiveRoute.navigate('');
     }
   }
 
   toHTML() {
-    const title = this.state = this.store.getState().title || defaultTitle
+    const title = this.state = this.store.getState().title || defaultTitle;
     return `
       <input type="text" class="input" value="${title}" />
       <div>
@@ -53,6 +53,6 @@ export class Header extends ExcelComponent {
           <i class="material-icons" data-button="exit">exit_to_app</i>
         </div>
       </div>
-    `
+    `;
   }
 }
