@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -15,7 +15,7 @@ module.exports = (env, args) => {
   const plugins = () => {
     const base = [
       new HTMLWebpackPlugin({
-        template: './index.html',
+        template: './src/index.html',
       }),
       new CopyWebpackPlugin({
         patterns: [{
@@ -27,9 +27,9 @@ module.exports = (env, args) => {
         filename: filename('css'),
       }),
       new CleanWebpackPlugin(),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      }),
+      // new webpack.DefinePlugin({
+      //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      // }),
     ];
 
     if (isDev) {
@@ -50,7 +50,7 @@ module.exports = (env, args) => {
       },
     },
     entry: {
-      main: ['@babel/polyfill', './index.js'],
+      main: ['@babel/polyfill', './src/index.js'],
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
