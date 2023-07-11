@@ -15,20 +15,21 @@ function storageName(param) {
 
 export class ExcelPage extends Page { 
   getRoot() {
-    const params = this.params ? this.params : Date.now().toString();
+    const params = this.params ? 
+      this.params : 
+      Date.now().toString();
     const state = storage(storageName(params));
-    // console.log ('state', state)
-    const store = createStore ( rootReducer, normalizeInitialState(state) );
-    const stateListener = debounce ( state => {
-      storage ( storageName(params), state );
+    const store = createStore (rootReducer, normalizeInitialState(state));
+    const stateListener = debounce((state) => {
+      storage (storageName(params), state);
     }, 300 );
 
-    store.subscribe ( stateListener );
+    store.subscribe (stateListener);
 
     this.excel = new Excel ({
       components: [Header, Toolbar, Formula, Table],
       store,
-    } );
+    });
     return this.excel.getRoot();
   }
 

@@ -36,7 +36,6 @@ export class Header extends ExcelComponent {
         localStorage.removeItem('excel:' + ActiveRoute.param);
       }
     } else if ($target.data.button === 'exit') {
-      console.log (event);
       ActiveRoute.navigate('');
     }
   }

@@ -1,16 +1,14 @@
 import {storage} from '@core/utils';
 
-export function toHtml(key = '11') { 
+export function toHtml(key = '11') {
   const model = storage(key);
-  return `<li class="db__record">
-                <a href="#excel/${key.split(':')[1]}">${model.title}</a>
-                <strong>
-                    ${new Date(model.openedDate).toLocaleDateString()}
-                </strong>
-            </li>`;
+  return `<a href="#excel/${key.split(':')[1]}">
+          <li class="db__record">
+          ${model.title}
+          <strong>${new Date(model.openedDate).toLocaleDateString()}</strong>
+          </li></a>`;
 }
-// excel:1213213
-// excel:12132132123
+
 function getAllKeys() {
   const keys = [];
   for (let i = 0; i < localStorage.length; i++) {
@@ -29,7 +27,6 @@ export function getAllRecords() {
 
 export function createRecordsTable() {
   const keys = getAllKeys();
-  console.log ('keys', keys);
   if (!keys.length) {
     getAllRecords();
   }

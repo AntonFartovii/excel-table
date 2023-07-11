@@ -1,6 +1,4 @@
 export class Page {
-  // некоторый интерфейс
-  //
   constructor(params) {
     this.params = params; 
   }

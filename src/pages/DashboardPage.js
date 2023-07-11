@@ -1,8 +1,7 @@
 
 import {$} from '@core/dom';
 import {Page} from '@core/routes/Page';
-import {create, createRecordsTable, getAllRecords} from './dashboard.functions';
-import {ActiveRoute} from '@core/routes/ActiveRoute';
+import {createRecordsTable} from './dashboard.functions';
 
 export class DashboardPage extends Page {
   getRoot() {

@@ -18,17 +18,14 @@ export class Router {
     this.changePageHandler();
   }
 
-  changePageHandler(event) {
-    if (this.page) {
-      this.page.destroy();
-    }
-    const  Page = ActiveRoute.path.includes('excel')
+  changePageHandler() {
+    if (this.page) this.page.destroy();
+    this.$placeholder.clear();
+    const Page = ActiveRoute.path.includes('excel')
       ? this.routes.excel
       : this.routes.dashboard;
     this.page = new Page(ActiveRoute.param);
-
     this.$placeholder.append(this.page.getRoot());
-
     this.page.afterRender();
   }
 

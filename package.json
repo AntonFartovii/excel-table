@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode=development",
     "serve": "webpack serve --mode=development",
-    "build": "webpack --mode=production",
-    "lint:fix": "eslint --fix"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack --mode=production",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "keywords": [
     "excel"
@@ -23,6 +24,7 @@
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.4",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
