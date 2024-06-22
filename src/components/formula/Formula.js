@@ -1,5 +1,4 @@
 import {ExcelComponent} from '@core/ExcelComponent';
-import {$} from '@/core/dom.js'; 
 
 export class Formula extends ExcelComponent {
   static className = 'excel__formula'
@@ -20,40 +19,35 @@ export class Formula extends ExcelComponent {
       </div>`;
   }
 
-  // onInput(event) {
-  //   const text = event.target.textContent.trim();
-  //   this.$emit('Formula:input', text)
-  // }
+  onInput(event) {
+    const text = event.target.textContent.trim();
+    // add event
+    this.$emit('formula:input', text);
+  }
 
   init() {
     super.init();
 
     this.$formula = this.$root.find('#formula');
 
+    // when we select table cell
     this.$on('table:select', $cell => {
       this.$formula.text($cell.data.value);
     });
-    // this.$on('Table:input', $cell => {
-    //   this.$formula.text($cell.text())
-    // })
 
-    // this.$subscribe(state => {
-    //   console.log (state.currentText)
-    //   this.$formula.text(state.currentText)
-    // })
+    // when we write text in table cell
+    this.$on('Table:input', $cell => {
+      this.$formula.text($cell.text());
+    });
   }
 
   storeChanged({currentText}) {
-    this.$formula.text ( currentText );
-  }
-
-  onInput(event) {
-    this.$emit('formula:input', $(event.target).text());
+    this.$formula.text(currentText);
   }
 
   onKeydown(event) {
     const keys = ['Enter', 'Tab'];
-    if (keys.includes(event.key)){
+    if (keys.includes(event.key)) {
       event.preventDefault();
       this.$emit('formula:done');
     }
